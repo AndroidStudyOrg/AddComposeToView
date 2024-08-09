@@ -18,7 +18,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 }
 
 android {
@@ -53,6 +53,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 }
 
@@ -72,4 +76,13 @@ dependencies {
     implementation("androidx.room:room-runtime:${rootProject.extra["room_version"]}")
     implementation("com.google.android.material:material:1.11.0")
     ksp("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
+
+    implementation(platform("androidx.compose:compose-bom:2024.06.00"))
+    // other dependencies
+    // Compose
+    implementation("androidx.activity:activity-compose:1.9.1")
+    implementation("androidx.compose.material3:material3")
+    implementation("com.google.accompanist:accompanist-themeadapter-material3:0.28.0")
+
+    debugImplementation("androidx.compose.ui:ui-tooling")
 }
